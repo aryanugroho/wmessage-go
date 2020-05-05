@@ -38,5 +38,5 @@ func (m MessageStore) Add(model *Message) (*Message, error) {
 }
 
 func (m MessageStore) GetAll() ([]*Message, error) {
-	panic("implement me")
+	return m.messageData, nil
 }
