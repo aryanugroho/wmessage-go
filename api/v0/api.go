@@ -1,7 +1,11 @@
 package apiv0
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
+// Init is api registry
 func Init() {
 	// message related module route
 	// POST
@@ -12,4 +16,10 @@ func Init() {
 
 	// WebSocket
 	http.HandleFunc("/v0/message/ws", listMessageSocket)
+
+	// Run
+	err := http.ListenAndServe(":9000", nil)
+	if err != nil {
+		log.Fatal("failed to starting http server, err: ", err.Error())
+	}
 }
