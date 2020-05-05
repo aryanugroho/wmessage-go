@@ -27,6 +27,7 @@ func addMessage(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
+	defer conn.Close()
 
 	if err := websocket.JSON.Send(conn, &payload); err != nil {
 		// handle error
