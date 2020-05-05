@@ -7,7 +7,13 @@ type Message struct {
 
 // MessageDomain is message logic
 type MessageDomain struct {
-	store MessageStore
+	store MessageStoreItf
+}
+
+func GetMessageDomain() *MessageDomain {
+	return &MessageDomain{
+		store: getMessageStore(),
+	}
 }
 
 func (d MessageDomain) CreateMessage(message *Message) error {
@@ -17,6 +23,18 @@ func (d MessageDomain) CreateMessage(message *Message) error {
 	}
 
 	return nil
+}
+
+var messageStore *MessageStore
+
+// getMessageStore is singleton accessor for messageStore
+func getMessageStore() MessageStoreItf {
+	if messageStore == nil {
+		messageStore = &MessageStore{
+			messageData: []*Message{},
+		}
+	}
+	return messageStore
 }
 
 // MessageStoreItf is message related pkg contract
