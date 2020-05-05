@@ -5,6 +5,7 @@ type Message struct {
 	Text string
 }
 
+// MessageDomain is message logic
 type MessageDomain struct {
 	store MessageStore
 }
@@ -18,12 +19,13 @@ func (d MessageDomain) CreateMessage(message *Message) error {
 	return nil
 }
 
-// MessageStore is message related pkg
+// MessageStoreItf is message related pkg contract
 type MessageStoreItf interface {
 	Add(model *Message) (*Message, error)
 	GetAll() ([]*Message, error)
 }
 
+// MessageStore is message related pkg
 type MessageStore struct {
 }
 
