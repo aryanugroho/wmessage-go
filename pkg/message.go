@@ -25,6 +25,15 @@ func (d MessageDomain) CreateMessage(message *Message) error {
 	return nil
 }
 
+func (d MessageDomain) GetAll() ([]*Message, error) {
+	list, err := d.store.GetAll()
+	if err != nil {
+		return nil, err
+	}
+
+	return list, nil
+}
+
 var messageStore *MessageStore
 
 // getMessageStore is singleton accessor for messageStore
