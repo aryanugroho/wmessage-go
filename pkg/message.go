@@ -39,9 +39,7 @@ var messageStore *MessageStore
 // getMessageStore is singleton accessor for messageStore
 func getMessageStore() MessageStoreItf {
 	if messageStore == nil {
-		messageStore = &MessageStore{
-			messageData: []*Message{},
-		}
+		messageStore = &MessageStore{}
 	}
 	return messageStore
 }
@@ -52,18 +50,19 @@ type MessageStoreItf interface {
 	GetAll() ([]*Message, error)
 }
 
+// messageData will act like data store
+var messageData []*Message
+
 // MessageStore is message related pkg
 type MessageStore struct {
-	// messageData will act like data store
-	messageData []*Message
 }
 
 func (m MessageStore) Add(model *Message) (*Message, error) {
-	m.messageData = append(m.messageData, model)
+	messageData = append(messageData, model)
 
 	return model, nil
 }
 
 func (m MessageStore) GetAll() ([]*Message, error) {
-	return m.messageData, nil
+	return messageData, nil
 }
