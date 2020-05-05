@@ -32,7 +32,9 @@ type MessageStore struct {
 }
 
 func (m MessageStore) Add(model *Message) (*Message, error) {
-	panic("implement me")
+	m.messageData = append(m.messageData, model)
+
+	return model, nil
 }
 
 func (m MessageStore) GetAll() ([]*Message, error) {
