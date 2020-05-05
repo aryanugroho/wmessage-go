@@ -2,7 +2,7 @@ package pkg
 
 // Message is message data model
 type Message struct {
-	Text string
+	Text string `json:"text"`
 }
 
 // MessageDomain is message logic
