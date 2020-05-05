@@ -23,7 +23,12 @@ func addMessage(w http.ResponseWriter, r *http.Request) {
 }
 
 func listMessage(w http.ResponseWriter, r *http.Request) {
+	list, err := service.GetMessages()
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+	}
 
+	util.ToJSON(w, http.StatusOK, list)
 }
 
 func listMessageSocket(w http.ResponseWriter, r *http.Request) {
