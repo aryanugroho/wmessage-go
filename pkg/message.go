@@ -27,6 +27,8 @@ type MessageStoreItf interface {
 
 // MessageStore is message related pkg
 type MessageStore struct {
+	// messageData will act like data store
+	messageData []*Message
 }
 
 func (m MessageStore) Add(model *Message) (*Message, error) {
