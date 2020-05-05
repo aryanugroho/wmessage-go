@@ -44,7 +44,3 @@ func listMessage(w http.ResponseWriter, r *http.Request) {
 
 	util.ToJSON(w, http.StatusOK, list)
 }
-
-func listMessageSocket(w http.ResponseWriter, r *http.Request) {
-
-}
