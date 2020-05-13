@@ -55,8 +55,6 @@ paths:
                   "$ref": "#/components/schemas/Message"
                 example:
                   - text: message text
-        '400':
-          description: Invalid ID supplied
       security: []
 externalDocs:
   description: Find out more about Swagger
