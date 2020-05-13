@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  description: 'wmessage-go API documentation'
+  version: 0.1.0
+  title: wmessage-go
+  contact:
+    email: mail.anugroho@gmail.com
+  license:
+    name: MIT
+    url: http://www.apache.org/licenses/MIT.html
+tags:
+  - name: message
+    description: Everything about your message services
+    externalDocs:
+      description: Find out more
+      url: https://github.com/aryanugroho/wmessage-go
+paths:
+  "/message/add":
+    post:
+      tags:
+        - message
+      summary: Post an message
+      description: ''
+      requestBody:
+        "$ref": "#/components/requestBodies/Message"
+      operationId: AddMessage
+      security: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+        '400':
+          description: Payload format invalid.
+  "/message/list":
+    get:
+      tags:
+        - message
+      summary: Get all existing message
+      description: Returns all message
+      operationId: GetMessages
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  "$ref": "#/components/schemas/Message"
+                example:
+                  - text: message text
+        '400':
+          description: Invalid ID supplied
+      security: []
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: http://localhost:9000/v0
+components:
+  requestBodies:
+    Message:
+      content:
+        application/json:
+          schema:
+            "$ref": "#/components/schemas/Message"
+      description: Message object
+      required: true
+  schemas:
+    Message:
+      type: object
+      properties:
+        text:
+          type: string
+      xml:
+        name: Message
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: string
